@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbyxAIU5UCj5i7CESDWmVKvvawqljZZqOPqjhLJlviz44wq8fV1ifFauT4-9YbZG_Rlv/exec"
+const scriptURL = "https://script.google.com/macros/s/AKfycbzxRq6sHIfMF0sY5iBoVwFklWlBueBSwOgTx5EgPeVGbeZCIEDobnGqykav44XNk1_p/exec"
 
 document.addEventListener('DOMContentLoaded', function() {
     // Set up date input with tomorrow as default
