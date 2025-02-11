@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbzxRq6sHIfMF0sY5iBoVwFklWlBueBSwOgTx5EgPeVGbeZCIEDobnGqykav44XNk1_p/exec"
+const scriptURL = "https://script.google.com/macros/s/AKfycbxEewrnQ9_VcAcn6JfmtyNtcUT-sZY1IOQuZkr5GzRcEwrTM-3nuAfK30yVqxYAT0KA/exec";
 
 document.addEventListener('DOMContentLoaded', function() {
     // Set up date input with tomorrow as default
@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
         var formData = new FormData();
         // formData.append("Employee", employeeName);
         // formData.append("BagelType", selectedBagel.charAt(0).toUpperCase() + selectedBagel.slice(1));
-        formData.append("Date", dateInput.value);
+        formData.append("Plain", 'd');
         console.log(formData);
-        fetch(scriptURL, { method: "POST", mode: 'no-cors', body: formData })
+        fetch(scriptURL, { method: "POST",  body: formData })
         .then((response) => {
             console.log("yay");
             console.log(response)
