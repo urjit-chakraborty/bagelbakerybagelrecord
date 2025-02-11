@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // formData.append("BagelType", selectedBagel.charAt(0).toUpperCase() + selectedBagel.slice(1));
         formData.append("Date", dateInput.value);
         console.log(formData);
-        fetch(scriptURL, { method: "POST", body: formData })
+        fetch(scriptURL, { method: "POST", mode: 'no-cors', body: formData })
         .then((response) => {
             console.log("yay");
             console.log(response)
