@@ -20,14 +20,17 @@
     <div class="container">
         <nav class="nav-bar">
             <a href="index.html" class="nav-link">← Home</a>
-            <h1>Production Records</h1>
+            <h1>Records</h1>
         </nav>
-
         
 
         <div class="container mt-5">
-            <h2 class="mb-4">Google Sheets DataTable</h2>
-            <div  style="max-height: 70vh;">
+            
+            <div style="max-height: 70vh;">
+                <div id="loadingSpinner" class="loading-spinner-container">
+                    <div class="loading-spinner"></div>
+                    <p>Loading data...</p>
+                </div>
                 <table id="dataTable" class="table table-striped table-bordered">
                     <thead>
                         <tr>

@@ -9,21 +9,22 @@ body {
     background-color: #f5f5f5;
     padding: 20px;
 }
-
+th, td { white-space: nowrap; }
 .container {
     max-width: 800px;
     margin: 0 auto;
     background-color: white;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-h1 {
+/* Remove or comment out the general h1 style */
+/* h1 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
-}
+} */
 
 .date-display {
     display: none;
@@ -31,14 +32,19 @@ h1 {
 
 .date-input {
     text-align: center;
-    margin-bottom: 30px;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: fit-content;
 }
 
 .date-input label {
-    display: block;
-    margin-bottom: 8px;
+    margin-bottom: 0;
     color: #666;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    white-space: nowrap;
 }
 
 .date-input input[type="date"] {
@@ -75,6 +81,11 @@ h1 {
     padding: 15px;
     background-color: #f8f8f8;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.input-group:hover {
+    background-color: #f0f0f0;
 }
 
 .input-controls {
@@ -118,20 +129,23 @@ input[type="number"] {
 
 .button-group {
     display: flex;
-    gap: 15px;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 30px 0;
+    padding: 0;
 }
 
 button {
-    padding: 15px 30px;
+    padding: 12px 24px;
     font-size: 1.1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 #saveButton {
+    margin-left: auto;
     background-color: #4CAF50;
     color: white;
 }
@@ -141,6 +155,7 @@ button {
 }
 
 #clearButton {
+    margin-right: auto;
     background-color: #f44336;
     color: white;
 }
@@ -159,9 +174,12 @@ button {
 
 .saved-message.success {
     display: block;
-    background-color: #dff0d8;
-    color: #3c763d;
-    border: 1px solid #d6e9c6;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: none;
+    padding: 15px;
+    margin-top: 30px;
+    border-radius: 5px;
 }
 
 @media (min-width: 768px) {
@@ -180,6 +198,19 @@ button {
     align-items: center;
     gap: 20px;
     margin-bottom: 30px;
+    padding: 10px 0;
+    position: relative;
+}
+
+.nav-bar h1 {
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #333;
 }
 
 .nav-link {
@@ -189,6 +220,9 @@ button {
     padding: 8px 16px;
     border-radius: 5px;
     transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    z-index: 1;
 }
 
 .nav-link:hover {
@@ -291,5 +325,56 @@ button {
 }
 
 .hidden {
+    display: none;
+}
+
+input[type="date"],
+input[type="number"],
+.unit-select {
+    padding: 10px;
+    font-size: 1.1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    transition: border-color 0.3s ease;
+}
+
+input[type="date"]:focus,
+input[type="number"]:focus,
+.unit-select:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/* Loading Spinner */
+.loading-spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.loading-spinner-container p {
+    margin-top: 15px;
+    color: #666;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #4CAF50;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hide table while loading */
+.loading #dataTable {
     display: none;
 }

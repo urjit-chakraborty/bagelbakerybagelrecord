@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const endDate = document.getElementById('endDate');
     const recordsTable = document.getElementById('recordsTable');
     const noRecords = document.getElementById('noRecords');
+    const tableContainer = document.querySelector('.container.mt-5');
+    const loadingSpinner = document.getElementById('loadingSpinner');
 
     // Set default date range (last 7 days)
     const today = new Date();
@@ -14,11 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function formatDate(dateString) {
         const date = new Date(dateString);
+        const year = date.getFullYear();
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const day = date.getDate().toString().padStart(2, '0');
-        const year = date.getFullYear();
-        return `${month}/${day}/${year}`;
+        return `${year}-${month}-${day}`;
     }
+    
+    // Add loading class to container
+    tableContainer.classList.add('loading');
     
     fetch(scriptURL)
         .then(response => response.json())
@@ -31,8 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             $('#dataTable').DataTable({
                 scrollX: true,
-                data: formattedData,
                 responsive: true,
+                data: formattedData,
                 columns: [
                     { data: 'Date' },
                     { data: 'Plain' },
@@ -43,8 +48,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     { data: 'SdTomato' },
                     { data: 'Pumpernickel' },
                     { data: 'UltimateGrain' }
-                ]
+                ],
+                initComplete: function() {
+                    // Remove loading class and spinner when table is ready
+                    tableContainer.classList.remove('loading');
+                    loadingSpinner.style.display = 'none';
+                }
             });
         })
-        .catch(error => console.error('Error fetching data:', error));
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            // Show error message if data fetch fails
+            loadingSpinner.innerHTML = `
+                <p style="color: #f44336;">Error loading data. Please try refreshing the page.</p>
+            `;
+        });
 }); 
