@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxEewrnQ9_VcAcn6JfmtyNtcUT-sZY1IOQuZkr5GzRcEwrTM-3nuAfK30yVqxYAT0KA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxyAarxG5TYx6sYFw_7Vz6nbVGWyvjVDHurSyO6CwKFYFxbXv1U2ubTvQ2omm4ZhrHg/exec";
 
 document.addEventListener('DOMContentLoaded', function() {
     // Set up date input with tomorrow as default
@@ -52,9 +52,16 @@ document.addEventListener('DOMContentLoaded', function() {
         var formData = new FormData();
         // formData.append("Employee", employeeName);
         // formData.append("BagelType", selectedBagel.charAt(0).toUpperCase() + selectedBagel.slice(1));
-        formData.append("Plain", 'd');
-        console.log(formData);
-        fetch(scriptURL, { method: "POST",  body: formData })
+        formData.append("Date", "test");
+        formData.append("Plain", "test");
+        formData.append("Asiago", "test");
+        formData.append("CRaisin", "test");
+        formData.append("Blueberry", "test");
+        formData.append("HoneyWheat", "test");
+        formData.append("SdTomato", "test");
+        formData.append("Pumpernickel", "test");
+        formData.append("UltimateGrain", "test");
+        fetch(scriptURL, { method: "POST", body: formData })
         .then((response) => {
             console.log("yay");
             console.log(response)
@@ -66,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
             //window.location.reload();
         });
         // Show success message
-        savedMessage.textContent = 'Batch quantities saved successfully!';
+        savedMessage.textContent = 'Batch    quantities saved successfully!';
         savedMessage.className = 'saved-message success';
 
         // Hide message after 3 seconds
