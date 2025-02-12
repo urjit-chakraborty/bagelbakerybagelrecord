@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bagel Batch Entry</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-bar">
+            <a href="index.html" class="nav-link">← Home</a>
+            <h1>Bagel Batch Entry</h1>
+        </nav>
+        
+        <div class="date-input">
+            <label for="batchDate">Production Date:</label>
+            <input type="date" id="batchDate">
+        </div>
+
+        <div class="date-display" id="currentDate"></div>
+
+        <div class="bagel-form">
+            <div class="bagel-inputs">
+                <div class="input-group">
+                    <label for="Plain">Plain</label>
+                    <div class="input-controls">
+                        <select id="PlainUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="Plain" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="Asiago">Asiago</label>
+                    <div class="input-controls">
+                        <select id="AsiagoUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="Asiago" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="CRaisin">Cinnamon Raisin</label>
+                    <div class="input-controls">
+                        <select id="CRaisinUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="CRaisin" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="Blueberry">Blueberry</label>
+                    <div class="input-controls">
+                        <select id="BlueberryUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="Blueberry" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="HoneyWheat">Honey Wheat</label>
+                    <div class="input-controls">
+                        <select id="HoneyWheatUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="HoneyWheat" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="SdTomato">Sun Dried Tomato</label>
+                    <div class="input-controls">
+                        <select id="SdTomatoUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="SdTomato" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="Pumpernickel">Pumpernickel</label>
+                    <div class="input-controls">
+                        <select id="PumpernickelUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual" selected>Individual</option>
+                        </select>
+                        <input type="number" id="Pumpernickel" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="UltimateGrain">Ultimate Grain</label>
+                    <div class="input-controls">
+                        <select id="UltimateGrainUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual" selected>Individual</option>
+                        </select>
+                        <input type="number" id="UltimateGrain" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button id="saveButton">Save Batches</button>
+                <button id="clearButton">Clear All</button>
+            </div>
+        </div>
+
+        <div id="savedMessage" class="saved-message"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
