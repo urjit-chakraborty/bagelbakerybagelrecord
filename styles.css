@@ -378,3 +378,61 @@ input[type="number"]:focus,
 .loading #dataTable {
     display: none;
 }
+
+/* Add these styles to your existing CSS */
+.records-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#recordsTable {
+    margin: 0 auto;
+    max-width: 600px;  /* Optimized for tablet */
+}
+
+#recordsTable th,
+#recordsTable td {
+    padding: 15px;  /* Larger touch targets for tablet */
+    font-size: 1.1rem;
+}
+
+.no-records {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Adjust loading spinner position */
+.loading-spinner-container {
+    margin: 40px auto;
+}
+
+/* Add these styles for the loading overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.loading-overlay p {
+    margin-top: 15px;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Add this to properly hide the overlay */
+.hidden {
+    display: none !important;  /* Use !important to override any other display settings */
+}

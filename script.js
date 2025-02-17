@@ -22,42 +22,64 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedMessage = document.getElementById('savedMessage');
 
     const totalBagelsDisplay = document.getElementById('totalBagels');
-    // Save batches
-    saveButton.addEventListener('click', function() {
-        console.log(dateInput.value);
-        // const batchData = {
-
-        //     date: dateInput.value,  // Use selected date instead of tomorrow
-
-        //     batches: {}
-
-        // };
-
-
-
-        const bagelTypes = ['Plain', 'Asiago', 'CRaisin', 'Blueberry', 
-
-                           'HoneyWheat', 'SdTomato', 'Pumpernickel', 'UltimateGrain'];
-
-        
-
-        
-        var formData = new FormData();
-        // Convert the date input value to local timezone date string
-        const selectedDate = new Date(dateInput.value);
-        const localDate = selectedDate.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+    // Add focus event listeners to all number inputs
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.addEventListener('focus', function() {
+            if (this.value === '0') {
+                this.value = '';
+            }
         });
         
-        formData.append("Date", localDate);
+        // Add blur event to reset to 0 if left empty
+        input.addEventListener('blur', function() {
+            if (this.value === '') {
+                this.value = '0';
+            }
+        });
+    });
+
+    // Save batches
+    saveButton.addEventListener('click', function() {
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        loadingOverlay.classList.remove('hidden');
+        saveButton.disabled = true;  // Disable save button while saving
+        
+        var formData = new FormData();
+        
+        // Standardize date formatting regardless of source
+        let dateToSend;
+        if (dateInput.value === dateInput.defaultValue) {
+            // If it's the default date, format it to match the manual selection format
+            const defaultDate = new Date(dateInput.value + 'T00:00:00');
+            dateToSend = defaultDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                timeZone: 'America/New_York'
+            });
+        } else {
+            // For manually selected dates, use existing formatting
+            const selectedDate = new Date(dateInput.value + 'T00:00:00');
+            dateToSend = selectedDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                timeZone: 'America/New_York'
+            });
+        }
+        
+        console.log(dateToSend);
+        formData.append("Date", dateToSend);
+        
+        const bagelTypes = ['Plain', 'Asiago', 'CRaisin', 'Blueberry', 
+                           'HoneyWheat', 'SdTomato', 'Pumpernickel', 'UltimateGrain',
+                           'Jalapeno', 'Everything', 'Sesame', 'Onion', 
+                           'Poppy', 'Salt', 'Garlic'];
+        
         bagelTypes.forEach(type => {
             const amount = document.getElementById(type).value;
             const unit = document.getElementById(type + 'Unit').value;
             formData.append(type, `${amount} ${unit}`);
-
         });
        
         // Add this to see FormData contents
@@ -68,30 +90,39 @@ document.addEventListener('DOMContentLoaded', function() {
         
         fetch(scriptURL, { method: "POST", body: formData })
         .then((response) => {
-            console.log("yay");
-            console.log(response)
-            console.log(formData);
-            //window.location.reload();
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            console.log("Success:", response);
+            
+            // Show success message
+            savedMessage.textContent = 'Batch quantities saved successfully!';
+            savedMessage.className = 'saved-message success';
+            
+            // Clear inputs
+            document.querySelectorAll('input[type="number"]').forEach(input => {
+                input.value = 0;
+            });
+            
+            document.querySelectorAll('.unit-select').forEach(select => {
+                select.value = 'board';
+            });
         })
         .catch((error) => {
-            console.log("nay");
-            //window.location.reload();
+            console.error("Error:", error);
+            savedMessage.textContent = 'Error saving batch quantities. Please try again.';
+            savedMessage.className = 'saved-message error';
+        })
+        .finally(() => {
+            // Hide loading overlay and re-enable save button
+            loadingOverlay.classList.add('hidden');
+            saveButton.disabled = false;
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                savedMessage.className = 'saved-message';
+            }, 3000);
         });
-        // Show success message
-        savedMessage.textContent = 'Batch    quantities saved successfully!';
-        savedMessage.className = 'saved-message success';
-        document.querySelectorAll('input[type="number"]').forEach(input => {
-            input.value = 0;
-        });
-        
-        document.querySelectorAll('.unit-select').forEach(select => {
-            select.value = 'board';
-        });
-        // Hide message after 3 seconds
-        setTimeout(() => {
-            savedMessage.className = 'saved-message';
-        }, 3000);
-        
     });
 
     // Clear all inputs

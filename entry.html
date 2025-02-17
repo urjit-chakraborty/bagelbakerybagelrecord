@@ -41,7 +41,7 @@
                             <option value="half">½ Boards</option>
                             <option value="individual">Individual</option>
                         </select>
-                        <input type="number" id="Asiago" min="0" value="0" step="0.5">
+                        <input type="number" id="Asiago" min="0" value="0" step="0.5" >
                     </div>
                 </div>
                 <div class="input-group">
@@ -110,16 +110,98 @@
                         <input type="number" id="UltimateGrain" min="0" value="0" step="0.5">
                     </div>
                 </div>
+                <div class="input-group">
+                    <label for="Jalapeno">Jalapeño</label>
+                    <div class="input-controls">
+                        <select id="JalapenoUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="Jalapeno" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="Everything">Everything</label>
+                    <div class="input-controls">
+                        <select id="EverythingUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="Everything" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="Sesame">Sesame</label>
+                    <div class="input-controls">
+                        <select id="SesameUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="Sesame" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="Onion">Onion</label>
+                    <div class="input-controls">
+                        <select id="OnionUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="Onion" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="Poppy">Poppy</label>
+                    <div class="input-controls">
+                        <select id="PoppyUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="Poppy" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="Salt">Salt</label>
+                    <div class="input-controls">
+                        <select id="SaltUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="Salt" min="0" value="0" step="0.5">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="Garlic">Garlic</label>
+                    <div class="input-controls">
+                        <select id="GarlicUnit" class="unit-select">
+                            <option value="board">Boards</option>
+                            <option value="half">½ Boards</option>
+                            <option value="individual">Individual</option>
+                        </select>
+                        <input type="number" id="Garlic" min="0" value="0" step="0.5">
+                    </div>
+                </div>
             </div>
             
             <div class="button-group">
                 <button id="clearButton">Clear All</button>
                 <button id="saveButton">Save Batches</button>
-                
             </div>
         </div>
 
         <div id="savedMessage" class="saved-message"></div>
+        
+        <!-- Add loading overlay -->
+        <div id="loadingOverlay" class="loading-overlay hidden">
+            <div class="loading-spinner"></div>
+            <p>Saving batch data...</p>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
